@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: krapp-redis-service
+spec:
+  ports:
+    - port: 6379
+      protocol: TCP
+  selector:
+    app: rails-redis
