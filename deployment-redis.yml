@@ -1,19 +1,20 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: krapp-replicaset
+  name: krapp-redis-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: rails-puma
+      app: rails-redis
   template:
     metadata:
       labels:
-        app: rails-puma
+        app: rails-redis
     spec:
       containers:
-        - name: krapp
-          image: snkshukla/krapp:latest
+        - name: krapp-redis
+          image: redis:3.2.6
           ports:
             - containerPort: 3000
+          imagePullPolicy: Always

@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: krapp-sidekiq-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rails-sidekiq
+  template:
+    metadata:
+      labels:
+        app: rails-sidekiq
+    spec:
+      containers:
+        - name: krapp-sidekiq
+          image: snkshukla/krapp:redis
+          command: ["bundle", "exec", "sidekiq"]
+          imagePullPolicy: Always
